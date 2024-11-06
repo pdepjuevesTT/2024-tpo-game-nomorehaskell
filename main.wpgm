@@ -56,6 +56,20 @@ game.addVisual(new Wall(position= game.at(11,8)))
 game.addVisual(new Ball8(position= game.at(13,13)))
 game.addVisual(new Ball8(position= game.at(8,4)))
 
+// colisiones con POWER UP
+game.whenCollideDo(player, { elemento =>
+    game.removeVisual(elemento) // hay que definir que el power up se elimine del tablero y que el personaje se vea afectado por los metodos del power up
+    elemento.grow()
+    elemento.gameOver()
+    elemento.decreaseSpeed()
+    elemento.newPosition()
+    elemento.addPowerUp()
+  })
+
+// crear objetos en posiciones random
+
+game.start()
+}
 
 
 
