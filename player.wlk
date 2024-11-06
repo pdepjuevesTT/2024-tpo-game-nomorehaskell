@@ -5,9 +5,19 @@ object player inherits Body(position = game.origin()){
 
   override method image() = "head-" + dir + ".png"
 
-  override method move(newDir) {
-    
-    self.changeDirection(newDir)
+  override method move(x) {
+    prevPosition = position
+
+    var newX = position.x()
+    var newY = position.y()
+
+    if(dir == "south") newY -= 1
+    if(dir == "north") newY += 1
+    if(dir == "east") newX += 1
+    if(dir == "west") newX -= 1
+
+    position = game.at(newX, newY)
+
     if(hasChild)
       childBody.move(prevPosition)
   }

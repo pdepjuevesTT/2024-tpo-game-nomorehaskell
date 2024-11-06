@@ -2,52 +2,27 @@ import wollok.game.*
 
 import player.*
 import items.*
+import gameConfig.*
+
 
 program SnakeGame {
-game.title("Epic Snake")
-var mapSize = 15
-game.height(mapSize)
-game.width(mapSize)
 
-game.cellSize(32)
+config.initGame()
 
-// add assets in asset folder, for example, for the background
-  // game.boardGround("fondo2.jpg")
-
-//
-
-game.addVisualCharacter(player)
-
-
-
-keyboard.down().onPressDo {
-player.prevPosition(player.position()) ;
-player.move("south")
-}
-keyboard.up().onPressDo {
-player.prevPosition(player.position()) ;
-player.move("north")
-}
-keyboard.right().onPressDo {
-player.prevPosition(player.position()) ;
-player.move("east")
-}
-keyboard.left().onPressDo {
-player.prevPosition(player.position()) ;
-player.move("west")
-}
-
-game.onTick(2000, "mitick", {player.move("west")})
+// PLAYER =================================================
 
 // TEST
 keyboard.space().onPressDo {
 player.addChild()
 }
 
-// game.onTick(2000, "mitick", {player.move("west")})
+config.initPlayer1(player)
 
-// Test manzanas
+// Test manzanas =================================================
 game.addVisual(new Food(position= game.at(4,3)))
+game.addVisual(new Food(position= game.at(5,3)))
+game.addVisual(new Food(position= game.at(6,3)))
+game.addVisual(new Food(position= game.at(7,3)))
 game.addVisual(new Food(position= game.at(7,10)))
 
 game.addVisual(new Wall(position= game.at(10,8)))
@@ -56,22 +31,18 @@ game.addVisual(new Wall(position= game.at(11,8)))
 game.addVisual(new Ball8(position= game.at(13,13)))
 game.addVisual(new Ball8(position= game.at(8,4)))
 
-// colisiones con POWER UP
+
+// colisiones con POWER UP =================================================
 game.whenCollideDo(player, { elemento =>
-    game.removeVisual(elemento) // hay que definir que el power up se elimine del tablero y que el personaje se vea afectado por los metodos del power up
-    elemento.grow()
-    elemento.gameOver()
-    elemento.decreaseSpeed()
-    elemento.newPosition()
-    elemento.addPowerUp()
+    game.removeVisual(elemento)
+
+    const tag = elemento.tag()
+
+    elemento.efect()
+    elemento.spawn()
   })
 
 // crear objetos en posiciones random
-
-game.start()
-}
-
-
 
 game.start()
 }

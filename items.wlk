@@ -1,54 +1,52 @@
 import player.*
 import wollok.game.*
+import gameConfig.*
+
 
 class PowerUp{
-    var property position
+    var property position = game.at(0.randomUpTo(mapSize - 1), 0.randomUpTo(mapSize - 1))
     var property image
     var property snake = player
 
-    method newPosition(){
-        position = game.at(1.randomUpTo(15), 1.randomUpTo(15))
-    }
+    const mapSize = config.mapSize()
 
-    method addPowerUp() {}
+    method spawn() {}
+    method efect() {}
 
-    method grow() {}
-
-    method decreaseSpeed(x) {}
-
-    method gameOver() {}
+    method tag() = "item"
 }
 
 class Food inherits PowerUp(image = "apple.png"){
-    override method grow() {
+    override method tag() = "food"
+
+    override method efect() { // TODO NO ANDA BIEN
         snake.addChild()
     }
 
-    override method addPowerUp() {
-        game.addVisual(new Food(position = self.position())) // no funciona, no agrega ningún objeto
+    override method spawn(){
+        const newItem = new Food()
+        game.addVisual(newItem)
     }
 }
 
-class Wall inherits PowerUp(image = "wall.png"){
-    var property normalSpeed = 10000 // habria que crearla antes en el game principal, la velocidad que se usará en el onTick para moverse
-
-    override method decreaseSpeed(dir) {
-        game.schedule(normalSpeed/2, {player.move(dir)})
+class Wall inherits PowerUp(image = "wall.png"){ // TODO
+    override method efect() {
+        gameState.loseGame(player)
     }
 
-    override method addPowerUp() {
-        game.addVisual(new Wall(position = self.position())) // no funciona, no agrega ningún objeto
+    override method spawn(){
+        const newItem = new Wall()
+        game.addVisual(newItem)
     }
 }
 
 class Ball8 inherits PowerUp(image = "ball8.png"){
-
-    override method gameOver() {
-        game.say(snake,"You lose!")
-        game.stop()
+    override method efect() {
+        //gameState.loseGame(player)
     }
 
-    override method addPowerUp() {
-        game.addVisual(new Ball8(position = self.position())) // no funciona, no agrega ningún objeto
+    override method spawn(){
+        const newItem = new Ball8()
+        game.addVisual(newItem)
     }
 }
