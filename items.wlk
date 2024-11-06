@@ -12,7 +12,7 @@ class PowerUp{
 
     method addPowerUp() {}
 
-    method grow() {}  
+    method grow() {}
 
     method decreaseSpeed(x) {}
 
@@ -20,10 +20,8 @@ class PowerUp{
 }
 
 class Food inherits PowerUp(image = "apple.png"){
-    var property text = "hola"
-
     override method grow() {
-      snake.addChild()
+        snake.addChild()
     }
 
     override method addPowerUp() {
@@ -35,7 +33,7 @@ class Wall inherits PowerUp(image = "wall.png"){
     var property normalSpeed = 10000 // habria que crearla antes en el game principal, la velocidad que se usará en el onTick para moverse
 
     override method decreaseSpeed(dir) {
-      game.schedule(normalSpeed/2, {player.move(dir)})
+        game.schedule(normalSpeed/2, {player.move(dir)})
     }
 
     override method addPowerUp() {
@@ -46,26 +44,11 @@ class Wall inherits PowerUp(image = "wall.png"){
 class Ball8 inherits PowerUp(image = "ball8.png"){
 
     override method gameOver() {
-      game.say(snake,"You lose!")
-      game.stop()
+        game.say(snake,"You lose!")
+        game.stop()
     }
 
     override method addPowerUp() {
         game.addVisual(new Ball8(position = self.position())) // no funciona, no agrega ningún objeto
     }
-}
-class Food {
-    var property position
-    var property image = "apple.png"
-    var property text = "hola"
-}
-
-class Wall {
-    var property position
-    var property image = "wall.png"
-}
-
-class Ball8 {
-    var property position
-    var property image = "ball8.png"
 }

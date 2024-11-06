@@ -1,29 +1,15 @@
 import wollok.game.*
 
-object player {
+object player inherits Body(position = game.origin()){
   var property dir = "east"
 
-  var property position = game.origin()
-  method image() = "head-" + dir + ".png"
-  var property prevPosition = position
+  override method image() = "head-" + dir + ".png"
 
-  
-  var property childBody = null
-  var property hasChild = false
-
-  method move(newDir) {
+  override method move(newDir) {
+    
     self.changeDirection(newDir)
     if(hasChild)
       childBody.move(prevPosition)
-  }
-
-  method addChild() {
-    if(hasChild)
-      childBody.addChild()
-    else
-      childBody = new Body(position= prevPosition)
-      game.addVisual(childBody)
-      hasChild = true
   }
 
   method changeDirection(newDir) {

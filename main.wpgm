@@ -5,8 +5,9 @@ import items.*
 
 program SnakeGame {
 game.title("Epic Snake")
-game.height(15)
-game.width(15)
+var mapSize = 15
+game.height(mapSize)
+game.width(mapSize)
 
 game.cellSize(32)
 
@@ -17,12 +18,14 @@ game.cellSize(32)
 
 game.addVisualCharacter(player)
 
+
+
 keyboard.down().onPressDo {
 player.prevPosition(player.position()) ;
 player.move("south")
 }
 keyboard.up().onPressDo {
-player.prevPosition(player.position()) ; // TODO ARREGLAR: No esta sincronizada la prev position
+player.prevPosition(player.position()) ;
 player.move("north")
 }
 keyboard.right().onPressDo {
@@ -33,6 +36,8 @@ keyboard.left().onPressDo {
 player.prevPosition(player.position()) ;
 player.move("west")
 }
+
+game.onTick(2000, "mitick", {player.move("west")})
 
 // TEST
 keyboard.space().onPressDo {
