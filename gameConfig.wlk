@@ -5,6 +5,7 @@ import items.*
 
 object config {
     method mapSize() = 14
+    var dosJugadores = true
 
     method initGame() {
         game.title("Epic Snake")
@@ -15,6 +16,14 @@ object config {
         game.boardGround("background.png")
 
         self.loadWalls()
+
+        const player1 = new Player(dir="west", position= game.at(11,11), number=1)
+        self.initPlayer1(player1)
+
+        if(dosJugadores) {
+            const player2 = new Player(dir="east", position= game.at(2,2), number=2)
+            self.initPlayer2(player2)
+        }
     }
 
     method initPlayer1(player1) {
@@ -60,11 +69,12 @@ object config {
 
     method loadWalls() {
         const muros = [0,1,2,3,4,5,6,7,8,9,10,11,12]
+        const max = self.mapSize() - 1
         muros.forEach({ pos =>
             game.addVisual(new Wall(position= game.at(0, pos)))
-            game.addVisual(new Wall(position= game.at(13, pos+1)))
+            game.addVisual(new Wall(position= game.at(max, pos+1)))
             game.addVisual(new Wall(position= game.at(pos+1, 0)))
-            game.addVisual(new Wall(position= game.at(pos, 13)))
+            game.addVisual(new Wall(position= game.at(pos, max)))
         })
     }
 }

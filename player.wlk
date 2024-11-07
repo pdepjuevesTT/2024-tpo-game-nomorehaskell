@@ -3,7 +3,7 @@ import wollok.game.*
 class Player inherits Body(position = game.at(1,1)){
   var property dir
 
-  override method image() = "head_" + dir + ".png"
+  override method image() = "head_" + dir + number.toString() + ".png"
 
   override method move(x) {
     prevPosition = position
@@ -34,8 +34,10 @@ class Body {
   var property childBody = null
   var property hasChild = false
 
+  var property number
+
   method tag() = "body"
-  method image() = "body.png"
+  method image() = "body" + number.toString() + ".png"
 
   method move(newPos) {
     prevPosition = position
@@ -48,7 +50,7 @@ class Body {
     if(hasChild)
       childBody.addChild()
     else    
-      childBody = new Body(position= prevPosition)
+      childBody = new Body(position= prevPosition, number = self.number())
       game.addVisual(childBody)
       hasChild = true
   }
