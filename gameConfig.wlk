@@ -2,7 +2,7 @@ import player.*
 import game.*
 
 object config {
-    method mapSize() = 15
+    method mapSize() = 14
 
     method initGame() {
         game.title("Epic Snake")
@@ -10,7 +10,7 @@ object config {
         game.width(self.mapSize())
 
         game.cellSize(32)
-        //game.boardGround("fondo2.jpg")
+        game.boardGround("background.png")
     }
 
     method initPlayer1(player1) {

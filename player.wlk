@@ -3,7 +3,7 @@ import wollok.game.*
 object player inherits Body(position = game.origin()){
   var property dir = "east"
 
-  override method image() = "head-" + dir + ".png"
+  override method image() = "head_" + dir + ".png"
 
   override method move(x) {
     prevPosition = position
