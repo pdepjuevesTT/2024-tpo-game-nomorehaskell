@@ -4,14 +4,13 @@ import gameConfig.*
 
 
 class PowerUp{
-    var property position = game.at(0.randomUpTo(mapSize - 1), 0.randomUpTo(mapSize - 1))
+    var property position = game.at(1.randomUpTo(mapSize - 2), 1.randomUpTo(mapSize - 2))
     var property image
-    var property snake = player
 
     const mapSize = config.mapSize()
 
     method spawn() {}
-    method efect() {}
+    method efect(player) {}
 
     method tag() = "item"
 }
@@ -19,19 +18,16 @@ class PowerUp{
 class Food inherits PowerUp(image = "apple.png"){
     override method tag() = "food"
 
-    override method efect() { // TODO NO ANDA BIEN
-        snake.addChild()
+    override method efect(player) { // TODO NO ANDA BIEN
+        player.addChild()
     }
 
-    override method spawn(){
-        const newItem = new Food()
-        game.addVisual(newItem)
-    }
+    // food.spawn() no funciona por un error interno de Wollok, por lo que se usa un metodo alternativo
 }
 
 class Wall inherits PowerUp(image = "wall.png"){ // TODO
-    override method efect() {
-        gameState.loseGame(player)
+    override method efect(player) {
+        gameState.loseGame()
     }
 
     override method spawn(){
@@ -41,8 +37,8 @@ class Wall inherits PowerUp(image = "wall.png"){ // TODO
 }
 
 class Ball8 inherits PowerUp(image = "ball8.png"){
-    override method efect() {
-        //gameState.loseGame(player)
+    override method efect(player) {
+        //gameState.loseGame()
     }
 
     override method spawn(){
