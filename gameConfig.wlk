@@ -33,3 +33,9 @@ object gameState {
         game.stop()
     }
 }
+
+object positionCreator {
+  const mapSize = config.mapSize()
+  method position() = game.at(0.randomUpTo(mapSize - 1), 0.randomUpTo(mapSize - 1)) 
+
+}

@@ -18,6 +18,11 @@ player.addChild()
 
 config.initPlayer1(player)
 
+// iteración de manzanas
+game.onTick(5000, "creator", {
+  game.addVisual(new Food(position = positionCreator.position()))
+  })
+
 // Test manzanas =================================================
 game.addVisual(new Food(position= game.at(4,3)))
 game.addVisual(new Food(position= game.at(5,3)))
