@@ -1,6 +1,6 @@
 import wollok.game.*
 
-object player inherits Body(position = game.origin()){
+object player inherits Body(position = game.at(1,1)){
   var property dir = "east"
 
   override method image() = "head_" + dir + ".png"
