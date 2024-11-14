@@ -5,7 +5,7 @@ import items.*
 
 object config {
     method mapSize() = 14
-    var dosJugadores = true
+    const dosJugadores = true
 
     method initGame() {
         game.title("Epic Snake")
