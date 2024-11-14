@@ -1,7 +1,7 @@
 import player.*
 import game.*
 import items.*
-
+import scoreManager.*
 
 object config {
     var dosJugadores = false
@@ -53,6 +53,7 @@ object config {
 
     method initGame() {
         gameMaps.loadLevel(dosJugadores)
+        score.startScore(dosJugadores)
 
         player1 = new Player(dir="west", position= game.at(11,11), number=1)
         player2 = new Player(dir="north", position= game.at(2,2), number=2)
