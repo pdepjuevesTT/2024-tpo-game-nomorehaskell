@@ -1,3 +1,4 @@
+import scoreManager.*
 import player.*
 import wollok.game.*
 import gameConfig.*
@@ -24,7 +25,7 @@ class PowerUp{
 class Food inherits PowerUp(image = "apple.png"){
     override method tag() = "food"
 
-    override method efect(player) { // TODO NO ANDA BIEN
+    override method efect(player) {
         player.addChild()
     }
 
@@ -33,13 +34,22 @@ class Food inherits PowerUp(image = "apple.png"){
 
 class Wall inherits PowerUp(image = "wall.png"){ // TODO
     override method efect(player) {
-        gameState.loseGame()
+        const num = player.number()
+        gameState.loseGame(num)
     }
 }
 
 class Ball8 inherits PowerUp(image = "ball8.png"){
     override method efect(player) {
-        //gameState.loseGame()
+        const num = player.number()
+        if(num == 1) {
+            score.addScore(1, 1)
+            score.addScore(-2, 2)
+        }
+        else {
+            score.addScore(1, 2)
+            score.addScore(-2, 1)
+        }
     }
 
     override method spawn(){

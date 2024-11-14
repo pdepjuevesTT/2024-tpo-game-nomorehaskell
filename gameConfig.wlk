@@ -41,7 +41,15 @@ object config {
         }
     }
 
-    method endMenu() {
+    method endMenu(numPlayer, isWinner) {
+        loseMenu.numPlayer(numPlayer)
+        winMenu.numPlayer(numPlayer)
+
+        if(isWinner)
+            game.addVisual(winMenu)
+        else
+            game.addVisual(loseMenu)
+
         keyboard.r().onPressDo {
             const visuals = game.allVisuals()
             visuals.forEach({visual => game.removeVisual(visual)})
@@ -67,8 +75,6 @@ object config {
             playerConfig.initPlayer2(player2)
         }
     }
-
-    
 }
 
 object mainMenu {
@@ -76,14 +82,36 @@ object mainMenu {
     method image() = "mainMenu.png"
 }
 
+object loseMenu {
+    var property numPlayer = 1
+    method position() = game.origin()
+    method image() = "j" + numPlayer + "lost.png"
+}
+
+object winMenu {
+    var property numPlayer = 1
+    method position() = game.origin()
+    method image() = "j" + numPlayer + "won.png"
+}
+
 object gameState {
-    method loseGame() {
+    method loseGame(numPlayer) {
         game.removeTickEvent("movePlayer1")
         game.removeTickEvent("movePlayer2")
-        config.endMenu()
+        // Espera un delay
+        game.schedule(1000, {
+            config.endMenu(numPlayer, false)
+        })
     }
-    method position() = game.origin()
-    method image() = "j1lost.png"
+
+    method winGame(numPlayer) {
+        game.removeTickEvent("movePlayer1")
+        game.removeTickEvent("movePlayer2")
+        // Espera un delay
+        game.schedule(1000, {
+            config.endMenu(numPlayer, true)
+        })
+    }
 }
 
 object playerConfig {
@@ -117,11 +145,15 @@ object playerConfig {
         game.whenCollideDo(currentPlayer, { elemento =>
             game.removeVisual(elemento)
 
+            const numPlayer = currentPlayer.number()
+
             const tag = elemento.tag()
-            if(tag == "food") // food.spawn() no funciona por un error interno de Wollok, por lo que se usa este metodo alternativo
+            if(tag == "food") {// food.spawn() no funciona por un error interno de Wollok, por lo que se usa este metodo alternativo
+                score.addScore(1, numPlayer)
                 game.schedule(500, {game.addVisual(new Food())})
+            }
             if(tag == "body") 
-                gameState.loseGame()
+                gameState.loseGame(numPlayer)
 
             elemento.efect(currentPlayer)
             game.schedule(500, {elemento.spawn()})
