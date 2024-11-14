@@ -21,12 +21,14 @@ object config {
 
     method startMenu() {
         gameIsRunning = false
+        game.addVisual(mainMenu)
 
         keyboard.num1().onPressDo {
             if(!gameIsRunning) {
                 gameIsRunning = true
                 dosJugadores = false
                 self.initGame()
+                game.removeVisual(mainMenu)
             }
         }
         keyboard.num2().onPressDo {
@@ -34,6 +36,7 @@ object config {
                 gameIsRunning = true
                 dosJugadores = true
                 self.initGame()
+                game.removeVisual(mainMenu)
             }
         }
     }
@@ -68,12 +71,19 @@ object config {
     
 }
 
+object mainMenu {
+    method position() = game.origin()
+    method image() = "mainMenu.png"
+}
+
 object gameState {
     method loseGame() {
         game.removeTickEvent("movePlayer1")
         game.removeTickEvent("movePlayer2")
         config.endMenu()
     }
+    method position() = game.origin()
+    method image() = "j1lost.png"
 }
 
 object playerConfig {
@@ -110,7 +120,7 @@ object playerConfig {
             const tag = elemento.tag()
             if(tag == "food") // food.spawn() no funciona por un error interno de Wollok, por lo que se usa este metodo alternativo
                 game.schedule(500, {game.addVisual(new Food())})
-            if(tag == "body")
+            if(tag == "body") 
                 gameState.loseGame()
 
             elemento.efect(currentPlayer)
