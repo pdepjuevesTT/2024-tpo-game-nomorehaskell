@@ -99,7 +99,7 @@ object gameState {
         game.removeTickEvent("movePlayer1")
         game.removeTickEvent("movePlayer2")
         // Espera un delay
-        game.schedule(1000, {
+        game.schedule(1550, {
             config.endMenu(numPlayer, false)
         })
     }
@@ -108,7 +108,7 @@ object gameState {
         game.removeTickEvent("movePlayer1")
         game.removeTickEvent("movePlayer2")
         // Espera un delay
-        game.schedule(1000, {
+        game.schedule(1550, {
             config.endMenu(numPlayer, true)
         })
     }
@@ -152,7 +152,7 @@ object playerConfig {
                 score.addScore(1, numPlayer)
                 game.schedule(500, {game.addVisual(new Food())})
             }
-            if(tag == "body") 
+            if(tag == "body")
                 gameState.loseGame(numPlayer)
 
             elemento.efect(currentPlayer)
@@ -221,7 +221,7 @@ object gameMaps {
             game.addVisual(new Food(position= game.at(pos, pos)))
         })
 
-        game.addVisual(new Ball8(position= game.at(1, 12)))
+        game.schedule(5000, {game.addVisual(new Ball8(position= game.at(1, 12)))})
     }
     method mpLevel2() {
         game.addVisual(new Food(position= game.at(6,6)))
@@ -235,7 +235,7 @@ object gameMaps {
             game.addVisual(new Wall(position= game.at(8, pos)))
         })
 
-        game.addVisual(new Ball8(position= game.at(1, 12)))
+        game.schedule(5000, {game.addVisual(new Ball8(position= game.at(1, 12)))})
     }
     method mpLevel3() {
         const apples = [4,6,7,9]
@@ -250,7 +250,7 @@ object gameMaps {
             game.addVisual(new Wall(position= game.at(10, pos)))
         })
 
-        game.addVisual(new Ball8(position= game.at(1, 12)))
+        game.schedule(5000, {game.addVisual(new Ball8(position= game.at(1, 12)))})
     }
 
     // Carga los muros limite del mapa

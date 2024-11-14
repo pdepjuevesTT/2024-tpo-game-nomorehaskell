@@ -3,7 +3,7 @@ object score {
     var scorePlayer1 = 0
     var scorePlayer2 = 0
 
-    const winScore = 15
+    const winScore = 14
 
     method startScore(dosJugadores) {
         scorePlayer1 = 0
@@ -109,6 +109,7 @@ object decenasPlayer2 {
     method image() = num.toString() + ".png"
     method position() = game.at(10, 13)
 }
+
 
 // Carteles fijos de puntuacion
 object cartel1Player1 {
