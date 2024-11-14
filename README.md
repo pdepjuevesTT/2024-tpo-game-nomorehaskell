@@ -52,4 +52,4 @@ Si se indica que se quiere jugar en el modo _**Multiplayer**_, los controles del
 - Ayudantes:
     * Federico Encinaz Sayago
 - Versión de wollok: 0.2.11
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+- Una vez terminado, no tenemos problemas en que el repositorio sea público
