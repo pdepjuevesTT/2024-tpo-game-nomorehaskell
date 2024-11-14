@@ -4,10 +4,16 @@ import gameConfig.*
 
 
 class PowerUp{
-    var property position = game.at(1.randomUpTo(mapSize - 2), 1.randomUpTo(mapSize - 2))
     var property image
 
-    const mapSize = config.mapSize()
+    var property position = self.findEmptyPos()
+
+    method findEmptyPos() {
+        var pos = game.at(1.randomUpTo(mapSize - 2), 1.randomUpTo(mapSize - 2))
+        return pos
+    }
+
+    const mapSize = game.width()
 
     method spawn() {}
     method efect(player) {}
@@ -28,11 +34,6 @@ class Food inherits PowerUp(image = "apple.png"){
 class Wall inherits PowerUp(image = "wall.png"){ // TODO
     override method efect(player) {
         gameState.loseGame()
-    }
-
-    override method spawn(){
-        const newItem = new Wall()
-        game.addVisual(newItem)
     }
 }
 
