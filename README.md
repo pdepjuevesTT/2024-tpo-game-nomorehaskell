@@ -10,13 +10,13 @@
 
 El mundo de _Snake game_ no es para cobardes, solo las serpientes más habilidosas y temerarias deciden embarcarse en esta aventura que puede convertir a solo una en la gran vencedora para llevarse la gloria y el poder, o por el contrario la deshonra y la muerte.
 
-El objetivo es lograr comer un total de 15 manzanas, lo cual convertirá a dicha serpiente en la mas larga y poderosa del reino _Snake game_. Deberán pasar por caminos impredecibles y hasta enfrentarse cara a cara a rivales desbordantes de astucia, pero recuerden, solo uno ganará...
+El objetivo es lograr comer un total de 16 manzanas, lo cual convertirá a dicha serpiente en la mas larga y poderosa del reino _Snake game_. Deberán pasar por caminos impredecibles y hasta enfrentarse cara a cara a rivales desbordantes de astucia, pero recuerden, solo uno ganará...
 
 _**¿Estás listo para aceptar el desafio?**_ 
 
 ## Reglas de Juego / Instrucciones
 ### Instructivo:
-- Se completa el juego cuando se come un total de 15 manzanas
+- Se completa el juego cuando se come un total de 16 manzanas.
 - Si la serpiente se estrella contra una pared o contra su propio cuerpo, es _game over_.
 - En el modo _**Multiplayer**_, el chocar contra otro jugador tambien implica un  _game over_.
 
