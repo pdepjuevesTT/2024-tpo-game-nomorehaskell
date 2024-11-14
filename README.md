@@ -2,9 +2,10 @@
 
 ## Equipo de desarrollo
 
-- Nicolás Dembrowsky
+- Nicolás Dembrowky
 - Ivan Saker
 - Lisandro Fernández
+- Matias Vilca
 
 ## Trama y objetivo
 
