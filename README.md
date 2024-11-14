@@ -36,8 +36,8 @@ En caso de que el jugador elija el modo _**Singleplayer**_ los controles corresp
 
 Si se indica que se quiere jugar en el modo _**Multiplayer**_, los controles del primer jugador se mantienen y el segundo jugador adopta los siguientes comandos:
 
-* d: movimiento hacía la izquierda
-* a: movimiento hacía la derecha
+* a: movimiento hacía la izquierda
+* d: movimiento hacía la derecha
 * w: movimiento hacía arriba
 * s: movimiento hacía abajo
 
